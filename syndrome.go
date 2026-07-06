@@ -5,7 +5,8 @@ import "fmt"
 // Syndrome measures every Z-stabilizer against the given error
 // configuration and returns the IDs of the "lit" stabilizers — those
 // adjacent to an odd number of flipped data qubits — in ascending order.
-// Syndrome measurement is perfect: no measurement errors are modeled.
+// A clean syndrome is returned as nil. Syndrome measurement is perfect:
+// no measurement errors are modeled.
 //
 // errs must have one entry per data qubit (as produced by SampleErrors);
 // Syndrome panics otherwise (programmer error).

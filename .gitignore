@@ -1,0 +1,17 @@
+# Binaries
+/threshold
+/bin/
+*.exe
+
+# Test and coverage artifacts
+*.out
+*.test
+
+# Generated data and plots
+*.csv
+*.png
+
+# Editor cruft
+.DS_Store
+.idea/
+.vscode/

@@ -7,9 +7,10 @@
 *.out
 *.test
 
-# Generated data and plots
+# Generated data and plots (the committed README plot is an exception)
 *.csv
 *.png
+!docs/threshold.png
 
 # Editor cruft
 .DS_Store

@@ -137,6 +137,9 @@ func (uf *UnionFindDecoder) grow(defect []bool, lit []int) []uint8 {
 		// Collect the roots of active clusters: odd parity, not
 		// touching a boundary. Only clusters containing defects can
 		// be odd, so scanning the lit stabilizers finds them all.
+		// This rescan costs O(rounds * |lit|); frontier work
+		// dominates in practice, but an explicit active-root
+		// worklist would tighten the near-linear bound if needed.
 		active = active[:0]
 		for _, s := range lit {
 			r := find(s)
@@ -154,7 +157,10 @@ func (uf *UnionFindDecoder) grow(defect []bool, lit []int) []uint8 {
 
 		// Phase 1: every active cluster grows its frontier edges by
 		// half an edge. Fusions are deferred so that growth within a
-		// round is independent of cluster order.
+		// round is independent of cluster order. All active clusters
+		// grow uniformly each round — a simplification of
+		// Delfosse-Nickerson's smallest-cluster-first weighted
+		// growth; slightly lower accuracy, same correctness.
 		fuse = fuse[:0]
 		for _, r := range active {
 			keep := frontier[r][:0]

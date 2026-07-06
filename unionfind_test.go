@@ -74,7 +74,9 @@ func TestDecodeKnownPatternsD3(t *testing.T) {
 			want: []Coord{{1, 1}},
 		},
 		{
-			name: "two well-separated errors corrected independently",
+			// The four lit stabilizers fuse into one cluster, but
+			// peeling still recovers both flips exactly.
+			name: "two single errors both corrected in place",
 			errs: []Coord{{1, 1}, {3, 3}},
 			want: []Coord{{1, 1}, {3, 3}},
 		},
